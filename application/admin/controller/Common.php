@@ -99,19 +99,6 @@ class Common extends AdminAuth {
          * 这是相关的表单配置
          * 更新之后可以添加到配置文件中
          */
-        $this->data['edit_fields'] = array(
-            'title'     => array('type' => 'text', 'label' => '标题'),
-            'des'   => array('type' => 'textarea', 'label' => '内容','id'=>'ckeditor_post_content'),
-            'status'         => array('type' => 'radio', 'label' => '状态','default'=> array(-1 => '删除', 0 => '草稿', 1 => '发布',2 => '待审核')),
-            'type'         => array('type' => 'radio', 'label' => '类型','default'=> array(-1 => '删除', 0 => '草稿', 1 => '发布',2 => '待审核')),
-            'file_type'         => array('type' => 'radio', 'label' => '文件类型','default'=> array(-1 => '压缩包', 0 => 'word', 1 => 'ppt',2 => 'excel')),
-            'hr1'            => array('type' => 'hr'),
-            'download' => array('type'=>'text','label'=>'下载链接'),
-            'author'     => array('type' => 'text', 'label' => '作者'),
-            'create_time'    => array('type' => 'text', 'label' => '发布时间','class'=>'datepicker','extra'=>array('data'=>array('format'=>'YYYY-MM-DD hh:mm:ss'),'wrapper'=>'col-sm-3')),
-            'hr2'            => array('type' => 'hr'),
-            'file'          =>array('type'=>'file','name'=>'file','label'=>'上传文件'),
-        );
 
         //默认值设置
         $item['status']         = '发布';
@@ -124,25 +111,10 @@ class Common extends AdminAuth {
 
     }
     public function read($id){
-
-        $this->data['edit_fields'] = array(
-            'title'     => array('type' => 'text', 'label' => '标题'),
-            'des'   => array('type' => 'textarea', 'label' => '内容','id'=>'ckeditor_post_content'),
-            'status'         => array('type' => 'radio', 'label' => '状态','default'=> array(-1 => '删除', 0 => '草稿', 1 => '发布',2 => '待审核')),
-            'type'         => array('type' => 'radio', 'label' => '类型','default'=> array(-1 => '删除', 0 => '草稿', 1 => '发布',2 => '待审核')),
-            'file_type'         => array('type' => 'radio', 'label' => '文件类型','default'=> array(-1 => '压缩包', 0 => 'word', 1 => 'ppt',2 => 'excel')),
-            'hr1'            => array('type' => 'hr'),
-            'download' => array('type'=>'text','label'=>'下载链接'),
-            'author'     => array('type' => 'text', 'label' => '作者'),
-            'create_time'    => array('type' => 'text', 'label' => '发布时间','class'=>'datepicker','extra'=>array('data'=>array('format'=>'YYYY-MM-DD hh:mm:ss'),'wrapper'=>'col-sm-3')),
-            'hr2'            => array('type' => 'hr'),
-        );
-
-
         //默认值设置
         $map['id']=$id;
         $item = Db::table($this->model)->where($map)->find();
-        $item['des'] = str_replace('&', '&amp;', $item['des']);
+        //$item['content'] = str_replace('&', '&amp;', $item['des']);
 
         $this->assign('item',$item);
         $this->assign('data',$this->data);
@@ -161,8 +133,6 @@ class Common extends AdminAuth {
             'title|文章标题' => 'require',
             'status|文章状态' => 'require',
             'author|文章作者' => 'require',
-            'type|类型' =>'require',
-            'download|下载地址'=>'require',
         ];
         // 数据验证
         $validate = new Validate($rule);
@@ -172,8 +142,6 @@ class Common extends AdminAuth {
         }
         //$data['create_time']=time();
         // $data['create_time'] = $data['create_time'] ? strtotime($data['create_time']) : time();
-        $data['timestamp']=$data['create_time'];
-        $data['times']=0;
         $num = Db::table($this->model)->data($data)->insert();
         if($num>=1)return $this->success("文章添加成功",$this->data['module_url']);
         else return $this->error("文章添加失败",$this->data['module_url']);
@@ -201,8 +169,7 @@ class Common extends AdminAuth {
             'title|文章标题' => 'require',
             'status|文章状态' => 'require',
             'author|文章作者' => 'require',
-            'type|类型' =>'require',
-            'download|下载地址'=>'require',
+            'content|文章内容'=>'require'
         ];
         // 数据验证
         $validate = new Validate($rule);
@@ -212,9 +179,6 @@ class Common extends AdminAuth {
         }
         //$data['create_time']=time();
         // $data['create_time'] = $data['create_time'] ? strtotime($data['create_time']) : time();
-        $data['timestamp']=$data['create_time'];
-        $data['times']=0;
-
         $map['id']=$id;
         $num = Db::table($this->model)->where($map)->update($data);
 

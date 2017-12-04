@@ -34,8 +34,21 @@ class Post extends Common {
             )
         ),
     );
+
     protected function _initialize() {
         parent::_initialize();
+        $this->data['edit_fields'] = array(
+            'title'     => array('type' => 'text', 'label' => '标题'),
+            'content'   => array('type' => 'textarea', 'label' => '内容','id'=>'ckeditor_post_content'),
+            'status'         => array('type' => 'radio', 'label' => '状态','default'=> array(-1 => '删除', 0 => '草稿', 1 => '发布',2 => '待审核')),
+            'author'     => array('type' => 'text', 'label' => '作者'),
+            'create_time'    => array('type' => 'text', 'label' => '发布时间','class'=>'datepicker','extra'=>array('data'=>array('format'=>'YYYY-MM-DD hh:mm:ss'),'wrapper'=>'col-sm-3')),
+            'hr2'            => array('type' => 'hr'),
+        );
+
+    }
+    public function read($id) {
+        return parent::read($id);
     }
 
 }

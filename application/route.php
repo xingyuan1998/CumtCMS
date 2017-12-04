@@ -23,4 +23,7 @@ return [
     'admin/index' => 'admin/index/index',
     'admin/login_action' => 'admin/index/login_action',
 
+    'admin/post/read/:id'                       => 'admin/post/read',
+    'admin/post/update/:id'                     => 'admin/post/update',
+    'admin/post/delete/:id'                     => 'admin/post/delete',
 ];
