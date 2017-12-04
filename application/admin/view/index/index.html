@@ -1,0 +1,131 @@
+<!-- ====================================================
+================= CONTENT ===============================
+===================================================== -->
+<section id="content">
+
+    <div class="page page-dashboard">
+
+        <div class="pageheader">
+
+            <h2>管理面板 <span></span></h2>
+
+            <div class="page-bar">
+
+                <ul class="page-breadcrumb">
+                    <li>
+                        <a href="{:url('/admin')}"><i class="fa fa-home"></i> 起始页</a>
+                    </li>
+                    <li>
+                        <a href="{:url('/admin')}">管理面板</a>
+                    </li>
+                </ul>
+
+                <div class="page-toolbar">
+                    <a role="button" tabindex="0" class="btn btn-lightred no-border">
+                        <i class="fa fa-calendar"></i>&nbsp;&nbsp;<span>{:date("Y年m月d日")}</span>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- cards row -->
+        <div class="row">
+            <!-- col -->
+            <div class="card-container col-lg-3 col-sm-6 col-sm-12">
+                <div class="card">
+                    <div class="front bg-blue">
+
+                        <!-- row -->
+                        <div class="row">
+                            <!-- col -->
+                            <div class="col-xs-4">
+                                <i class="fa fa-list fa-4x" aria-hidden="true"></i>
+                            </div>
+                            <!-- /col -->
+                            <!-- col -->
+                            <div class="col-xs-8">
+                                <p class="text-elg text-strong mb-0">{$data['post_count_all']}</p>
+                                <span>总Slide数</span>
+                            </div>
+                            <!-- /col -->
+                        </div>
+                        <!-- /row -->
+
+                    </div>
+                    <div class="back bg-blue">
+
+                        <!-- row -->
+                        <div class="row">
+
+                            <!-- col -->
+                            <div class="col-xs-12">
+                                <a href="{:url('/admin/slide')}"><i class="fa fa-ellipsis-h fa-2x"></i> 更多</a>
+                            </div>
+                            <!-- /col -->
+
+                        </div>
+                        <!-- /row -->
+
+                    </div>
+                </div>
+            </div>
+            <!-- /col -->
+
+            <!-- col -->
+            <div class="card-container col-lg-3 col-sm-6 col-sm-12">
+                <div class="card">
+                    <div class="front bg-slategray">
+
+                        <!-- row -->
+                        <div class="row">
+                            <!-- col -->
+                            <div class="col-xs-4">
+                                <i class="fa fa-list-alt fa-4x" aria-hidden="true"></i>
+                            </div>
+                            <!-- /col -->
+                            <!-- col -->
+                            <div class="col-xs-8">
+                                <p class="text-elg text-strong mb-0">{$data['post_count_latest_month']}</p>
+                                <span>当月发布</span>
+                            </div>
+                            <!-- /col -->
+                        </div>
+                        <!-- /row -->
+
+                    </div>
+                    <div class="back bg-slategray">
+
+                        <!-- row -->
+                        <div class="row">
+                            <!-- col -->
+                            <div class="col-xs-6">
+                                <a href="{:url('/admin/slide')}?start_time={:date('Y-m-01')}&end_time="><i class="fa fa-chain-broken fa-2x"></i> 详细</a>
+                            </div>
+                            <!-- /col -->
+                            <!-- col -->
+                            <div class="col-xs-6">
+                                <a href="{:url('/admin/slide')}"><i class="fa fa-ellipsis-h fa-2x"></i> 更多</a>
+                            </div>
+                            <!-- /col -->
+                        </div>
+                        <!-- /row -->
+
+                    </div>
+                </div>
+            </div>
+            <!-- /col -->
+
+        </div>
+        <!-- /row -->
+
+
+
+
+
+    </div>
+
+
+</section>
+<!--/ CONTENT -->
