@@ -18,7 +18,20 @@ class Common extends AdminAuth {
     public $request;
     public $param;
     public $data;
-//
+    /**
+     * 继承这个控制器，基本完成了常见的数据操作
+     *
+     * request 这个是总的请求拦截
+     * param 这个是request中的参数
+     * data 这个是相关的配置数组
+     * model 模型名称，刚开始想在data里面的，后面想想不太安全
+     *
+     * 数据库必须的一些字段：
+     *  id 数据库索引
+     *  create_time 创建时间
+     *  status 数据的状态 删除的时候 改变这个状态
+     *
+     */
 //    private $data = array(
 //        'model'=>'',
 //        'module_name' => 'Slide',
