@@ -11,6 +11,7 @@ namespace app\admin\controller;
 
 use think\Config;
 use think\Db;
+use think\exception\ErrorException;
 use think\Validate;
 
 class Common extends AdminAuth {
@@ -20,6 +21,7 @@ class Common extends AdminAuth {
     public $param;
     public $data;
     public $config;
+    public $rule;
     /**
      * 继承这个控制器，基本完成了常见的数据操作
      *
@@ -62,8 +64,12 @@ class Common extends AdminAuth {
         parent::_initialize();
         $this->request=request();
         $this->param = $this->request->param();
+
         $this->config = Config::get('model')[$this->model];
+
         $this->data = $this->config;
+        $this->rule = $this->data['rule'];
+
     }
 
     public function index(){
@@ -132,13 +138,13 @@ class Common extends AdminAuth {
          *  数据验证规则可以单独开一个配置文件 这样
          *  封装隔离
          */
-        $rule = [
-            'title|文章标题' => 'require',
-            'status|文章状态' => 'require',
-            'author|文章作者' => 'require',
-        ];
+//        $rule = [
+//            'title|文章标题' => 'require',
+//            'status|文章状态' => 'require',
+//            'author|文章作者' => 'require',
+//        ];
         // 数据验证
-        $validate = new Validate($rule);
+        $validate = new Validate($this->rule[$this->request->action()]);
         $result   = $validate->check($data);
         if(!$result){
             return  $validate->getError();
@@ -167,15 +173,15 @@ class Common extends AdminAuth {
 
     public function update($id){
         $data = input('post.');
-
-        $rule = [
-            'title|文章标题' => 'require',
-            'status|文章状态' => 'require',
-            'author|文章作者' => 'require',
-            'content|文章内容'=>'require'
-        ];
+//
+//        $rule = [
+//            'title|文章标题' => 'require',
+//            'status|文章状态' => 'require',
+//            'author|文章作者' => 'require',
+//            'content|文章内容'=>'require'
+//        ];
         // 数据验证
-        $validate = new Validate($rule);
+        $validate = new Validate($this->rule[$this->request->action()]);
         $result   = $validate->check($data);
         if(!$result){
             return  $validate->getError();
