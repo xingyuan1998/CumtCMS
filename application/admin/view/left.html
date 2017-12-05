@@ -51,20 +51,18 @@
                                         <!--<li><a class="ajax-link" href="{:url('/admin/administrator/create')}"><i class="fa fa-caret-right"></i> 新增管理员</a></li>-->
                                     <!--</ul>-->
                                 <!--</li>-->
-                                <li class="posts">
-                                    <a role="button" tabindex="0"><i class="fa fa-list" aria-hidden="true"></i> <span>Slide管理</span></a>
-                                    <ul>
-                                        <li><a class="ajax-link" href="{:url('/admin/slide')}"><i class="fa fa-caret-right" aria-hidden="true"></i> Slide列表</a></li>
-                                        <li><a class="ajax-link" href="{:url('/admin/slide/create')}"><i class="fa fa-caret-right"></i> 新增Slide</a></li>
-                                    </ul>
-                                </li>
+
+                                {assign name="model" value="$Think.config.model" /}
+                                {volist name="model" id="vo"}
                                 <li class="posts">
                                     <a role="button" tabindex="0"><i class="fa fa-list" aria-hidden="true"></i> <span>Post管理</span></a>
                                     <ul>
-                                        <li><a class="ajax-link" href="{:url('/admin/post')}"><i class="fa fa-caret-right" aria-hidden="true"></i> Post列表</a></li>
-                                        <li><a class="ajax-link" href="{:url('/admin/post/create')}"><i class="fa fa-caret-right"></i> 新增Post</a></li>
+                                        <li><a class="ajax-link" href="/admin/{$vo.name}"><i class="fa fa-caret-right" aria-hidden="true"></i> Post列表</a></li>
+                                        <li><a class="ajax-link" href="/admin/{$vo.name}/create"><i class="fa fa-caret-right"></i> 新增Post</a></li>
                                     </ul>
                                 </li>
+                                {/volist}
+
 
 
                             </ul>

@@ -15,5 +15,17 @@ return [
     'template'  =>  [
         'layout_on'     =>  true,
         'layout_name'   =>  'layout',
-    ]
+    ],
+    /**
+     *
+     *  这个后台左侧列表的配置项，通过模板循环，具体可以查看left.html。
+     *
+     *
+     */
+    'model'=>array(
+      'post'=>array(
+        'name'=>'post',
+        'url'=>'admin/post/'
+      ),
+    ),
 ];

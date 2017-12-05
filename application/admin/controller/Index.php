@@ -13,12 +13,16 @@ use think\Db;
 use think\Validate;
 
 class Index extends AdminAuth {
+    private $data;
     public function index(){
-
-        return view();
+        $this->data['post_count_all'] = Db::table('post')->where('status','>=',0)->count();
+        $this->data['post_count_latest_month'] = Db::table('post')->whereTime('create_time','>=',date('Y-m-01'))->where('status','>=',0)->count();
+        $this->assign('data',$this->data);
+        return $this->fetch();
     }
     public function login()
     {
+
         $this->view->engine->layout(false);
         return view();
     }
