@@ -9,6 +9,7 @@
 namespace app\admin\controller;
 
 
+use think\Config;
 use think\Db;
 use think\Validate;
 
@@ -18,6 +19,7 @@ class Common extends AdminAuth {
     public $request;
     public $param;
     public $data;
+    public $config;
     /**
      * 继承这个控制器，基本完成了常见的数据操作
      *
@@ -60,7 +62,8 @@ class Common extends AdminAuth {
         parent::_initialize();
         $this->request=request();
         $this->param = $this->request->param();
-
+        $this->config = Config::get('model')[$this->model];
+        $this->data = $this->config;
     }
 
     public function index(){
